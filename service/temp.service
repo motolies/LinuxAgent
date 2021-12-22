@@ -1,0 +1,15 @@
+[Unit]
+Description=Agent Daemon
+After=network.target
+
+[Service]
+User=root
+Group=root
+WorkingDirectory=##cwd
+ExecStart=##cwd/venv/bin/gunicorn \
+        --workers 5 \
+        --bind :8000 \
+        app:app
+
+[Install]
+WantedBy=multi-user.target
